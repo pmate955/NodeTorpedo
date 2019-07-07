@@ -15,11 +15,11 @@ let boardA = generate2D();
 let boardB = generate2D();
 
 const getA = (req, res) => {
-  res.render('./../views/board', {board: boardA});
+  res.render('./../views/board', {board: boardA, title: 'Player A board'});
 };
 
 const getB = (req, res) => {
-  res.render('./../views/board', {board: boardB});
+  res.render('./../views/board', {board: boardB, title: 'Player B board'});
 };
 
 const shotA = (req, res) => {
