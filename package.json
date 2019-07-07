@@ -1,0 +1,24 @@
+{
+  "name": "nodetorpedo",
+  "version": "0.0.1",
+  "description": "Small project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pmate955/NodeTorpedo.git"
+  },
+  "keywords": [
+    "nodejs",
+    "torpedo",
+    "express"
+  ],
+  "author": "Mate Pinter",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pmate955/NodeTorpedo/issues"
+  },
+  "homepage": "https://github.com/pmate955/NodeTorpedo#readme"
+}
