@@ -1,0 +1,19 @@
+doctype html
+html
+    head
+        title Jade Page
+    body
+        table(border='2')
+            thead
+            tbody
+            for object in board
+                tr
+                for element in object
+                    if element == 0
+                        td= '.' 
+                    if element == 1
+                        td= 'O'
+                    if element == 2
+                        td=  '.'
+                    if element == 3
+                        td= 'X'
