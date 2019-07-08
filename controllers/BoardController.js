@@ -1,25 +1,28 @@
 const generate2D = () => {
-  let arr = new Array(8);
+  let arr = new Array(10);
   for (let i = 0; i < arr.length; i++) {
-    arr[i] = new Array(8);
+    arr[i] = new Array(10);
   }
+  return arr;
+};
+
+const fill2D = (arr) => {
   for (let i = 0; i < arr.length; i++) {
     for (let j = 0; j < arr[i].length; j++) {
       arr[i][j] = 0; // 0 - empty, 1 - empty shot, 2 boat, 3 - found boat
     }
   }
-  return arr;
 };
 
-let boardA = generate2D();
-let boardB = generate2D();
+let boardA = fill2D(generate2D());
+let boardB = fill2D(generate2D());
 
 const getA = (req, res) => {
-  res.render('./../views/board', {board: boardA, title: 'Player A board'});
+  res.render('./../views/board', { board: boardA, title: 'Player A board' });
 };
 
 const getB = (req, res) => {
-  res.render('./../views/board', {board: boardB, title: 'Player B board'});
+  res.render('./../views/board', { board: boardB, title: 'Player B board' });
 };
 
 const shotA = (req, res) => {
@@ -45,36 +48,43 @@ const shotB = (req, res) => {
 };
 
 const updateA = (req, res) => {
-  boardA = [];
-  let items = req.body.data;
-  let i = 0;
-  while(i < items.length) {
-    boardA.push([]);
-    for (let key in items[i].fields) {
-      boardA[boardA.length - 1].push(items[i].fields[key]);
-    }
-    i++;
-  }
+  // console.log(JSON.stringify(req.body));
+  boardA = generate2D();
+  let js = req.body;
+  let x = 0;
+  let y = 0;
+  Object.keys(js).forEach(function (key) {
+    Object.keys(js[key]).forEach(function (val) {
+      boardA[x++][y] = js[key][val];
+    });
+    y++;
+    x = 0;
+  });
+  console.log(boardA);
+  res.send('OK');
 };
 
 const updateB = (req, res) => {
-  boardB = [];
-  let items = req.body.data;
-  let i = 0;
-  while(i < items.length) {
-    boardB.push([]);
-    for (let key in items[i].fields) {
-      boardB[boardB.length - 1].push(items[i].fields[key]);
-    }
-    i++;
-  }
+  boardB = generate2D();
+  let js = req.body;
+  let x = 0;
+  let y = 0;
+  Object.keys(js).forEach(function (key) {
+    Object.keys(js[key]).forEach(function (val) {
+      boardB[x++][y] = js[key][val];
+    });
+    y++;
+    x = 0;
+  });
+  console.log(boardB);
+  res.send('OK');
 };
 
 module.exports = {
-  getA, 
-  getB, 
-  shotA, 
-  shotB, 
-  updateA, 
+  getA,
+  getB,
+  shotA,
+  shotB,
+  updateA,
   updateB
 };
